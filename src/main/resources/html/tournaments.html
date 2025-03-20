@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Tournaments List</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 80%;
+            margin: 20px auto;
+        }
+
+        th, td {
+            border: 1px solid #000;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        .container {
+            width: 80%;
+            margin: 20px auto;
+            text-align: center;
+        }
+
+        h1 {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>Tournaments List</h1>
+    <table>
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Start Date</th>
+            <th>End Date</th>
+            <th>Location</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="tournament : ${tournament}">
+            <td th:text="${tournament.turnament_id}"></td>
+            <td th:text="${tournament.turnament_name}"></td>
+            <td th:text="${tournament.start_date}"></td>
+            <td th:text="${tournament.end_date}"></td>
+            <td th:text="${tournament.location}"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

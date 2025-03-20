@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>SportClubs List</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        th, td {
+            border: 1px solid #000;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+    </style>
+</head>
+<body>
+<h1>SportClubs List</h1>
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>name</th>
+        <th>address</th>
+        <th>phone_club</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="sportclub : ${SportClubs}">
+        <td th:text="${sportclub.idSportClub}"></td>
+        <td th:text="${sportclub.name}"></td>
+        <td th:text="${sportclub.address}"></td>
+        <td th:text="${sportclub.phone_club}"></td>
+</table>
+</body>
+</html>
