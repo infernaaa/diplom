@@ -24,7 +24,7 @@ public class TournamentControl {
 
     @GetMapping
     public String tournament(Model model) {
-        model.addAttribute("tournament", tournamentService.findAll());
+        model.addAttribute("tournamentModel", tournamentService.findAll());
         return "tournaments";
     }
 

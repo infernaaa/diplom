@@ -1,63 +1,67 @@
 package com.example.diplom_boot.model;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
 import java.time.LocalDate;
 
 @Entity
 @Table(name = "tournament")
 public class TournamentModel {
-
     @Id
-    @GeneratedValue(strategy  = GenerationType.IDENTITY)
-    @Column(name ="tournament_id")
-    private Long turnament_id;
+    @Column(name = "tournament_id", nullable = false)
+    private Integer id;
 
-    @Column(name = "name")
-    private String turnament_name;
+    @Column(name = "name", length = 50)
+    private String name;
 
     @Column(name = "start_date")
-    private LocalDate start_date;
+    private LocalDate startDate;
 
     @Column(name = "end_date")
-    private LocalDate end_date;
+    private LocalDate endDate;
 
-    @Column(name = "location")
+    @Column(name = "location", length = 50)
     private String location;
 
-    public String getName(){
-        return turnament_name;
-    }
-    public LocalDate getEnd_date() {
-        return end_date;
+    @Column(name = "description", length = Integer.MAX_VALUE)
+    private String description;
+
+    @Column(name = "rules", length = Integer.MAX_VALUE)
+    private String rules;
+
+    public Integer getId() {
+        return id;
     }
 
-    public void setEnd_date(LocalDate end_date) {
-        this.end_date = end_date;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
-    public LocalDate getStart_date() {
-        return start_date;
+    public String getName() {
+        return name;
     }
 
-    public void setStart_date(LocalDate start_date) {
-        this.start_date = start_date;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getTurnament_name() {
-        return turnament_name;
+    public LocalDate getStartDate() {
+        return startDate;
     }
 
-    public void setTurnament_name(String turnament_name) {
-        this.turnament_name = turnament_name;
+    public void setStartDate(LocalDate startDate) {
+        this.startDate = startDate;
     }
 
-    public Long getTurnament_id() {
-        return turnament_id;
+    public LocalDate getEndDate() {
+        return endDate;
     }
 
-    public void setTurnament_id(Long turnament_id) {
-        this.turnament_id = turnament_id;
+    public void setEndDate(LocalDate endDate) {
+        this.endDate = endDate;
     }
 
     public String getLocation() {
@@ -67,4 +71,21 @@ public class TournamentModel {
     public void setLocation(String location) {
         this.location = location;
     }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getRules() {
+        return rules;
+    }
+
+    public void setRules(String rules) {
+        this.rules = rules;
+    }
+
 }

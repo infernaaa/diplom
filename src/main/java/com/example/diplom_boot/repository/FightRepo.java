@@ -1,4 +1,9 @@
 package com.example.diplom_boot.repository;
 
-public interface FightRepo {
+import com.example.diplom_boot.model.FightModel;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+@Repository
+public interface FightRepo extends JpaRepository<FightModel,Long> {
 }

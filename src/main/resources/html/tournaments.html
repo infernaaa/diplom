@@ -45,15 +45,19 @@
             <th>Start Date</th>
             <th>End Date</th>
             <th>Location</th>
+            <th>Description</th>
+            <th>Rules</th>
         </tr>
         </thead>
         <tbody>
-        <tr th:each="tournament : ${tournament}">
-            <td th:text="${tournament.turnament_id}"></td>
-            <td th:text="${tournament.turnament_name}"></td>
-            <td th:text="${tournament.start_date}"></td>
-            <td th:text="${tournament.end_date}"></td>
-            <td th:text="${tournament.location}"></td>
+        <tr th:each="tournamentModel : ${tournamentModel}">
+            <td th:text="${tournamentModel.id}"></td>
+            <td th:text="${tournamentModel.name}"></td>
+            <td th:text="${tournamentModel.startDate}"></td>
+            <td th:text="${tournamentModel.endDate}"></td>
+            <td th:text="${tournamentModel.location}"></td>
+            <td th:text="${tournamentModel.description}"></td>
+            <td th:text="${tournamentModel.rules}"></td>
         </tr>
         </tbody>
     </table>

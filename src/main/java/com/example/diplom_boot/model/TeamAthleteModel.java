@@ -5,33 +5,22 @@ import jakarta.persistence.*;
 @Entity
 @Table(name = "team_athlete")
 public class TeamAthleteModel {
-    @EmbeddedId
-    private TeamAthleteId id;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "team_id")
+    private TeamModel teamModel;
 
-    @MapsId("teamId")
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "team_id", nullable = false)
-    private TeamModel team;
-
-    @MapsId("athleteId")
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "athlete_id", nullable = false)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "athlete_id")
     private AthleteModel athleteModel;
-
-    public TeamAthleteId getId() {
-        return id;
-    }
-
-    public void setId(TeamAthleteId id) {
-        this.id = id;
-    }
+    @Id
+    private Long id;
 
     public TeamModel getTeam() {
-        return team;
+        return teamModel;
     }
 
     public void setTeam(TeamModel teamModel) {
-        this.team = teamModel;
+        this.teamModel = teamModel;
     }
 
     public AthleteModel getAthlete() {
@@ -42,4 +31,11 @@ public class TeamAthleteModel {
         this.athleteModel = athleteModel;
     }
 
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Long getId() {
+        return id;
+    }
 }

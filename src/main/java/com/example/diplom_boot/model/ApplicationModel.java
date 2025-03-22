@@ -13,11 +13,11 @@ public class ApplicationModel {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "tournament_id")
-    private TournamentModel tournament;
+    private TournamentModel tournamentModel;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "sport_club_id")
-    private SportClubModel sportClub;
+    private SportClubModel sportClubModel;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "team_id")
@@ -27,10 +27,10 @@ public class ApplicationModel {
     @JoinColumn(name = "athlete_id")
     private AthleteModel athleteModel;
 
-    @Column(name = "status", nullable = false, length = 50)
+    @Column(name = "status", length = 50)
     private String status;
 
-    @Column(name = "application_date", nullable = false)
+    @Column(name = "application_date")
     private LocalDate applicationDate;
 
     public Integer getId() {
@@ -42,19 +42,19 @@ public class ApplicationModel {
     }
 
     public TournamentModel getTournament() {
-        return tournament;
+        return tournamentModel;
     }
 
-    public void setTournament(TournamentModel tournament) {
-        this.tournament = tournament;
+    public void setTournament(TournamentModel tournamentModel) {
+        this.tournamentModel = tournamentModel;
     }
 
     public SportClubModel getSportClub() {
-        return sportClub;
+        return sportClubModel;
     }
 
     public void setSportClub(SportClubModel sportClubModel) {
-        this.sportClub = sportClubModel;
+        this.sportClubModel = sportClubModel;
     }
 
     public TeamModel getTeam() {

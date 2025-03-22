@@ -2,6 +2,8 @@ package com.example.diplom_boot.model;
 
 import jakarta.persistence.*;
 
+import java.time.LocalDate;
+
 @Entity
 @Table(name = "athlete")
 public class AthleteModel {
@@ -10,15 +12,20 @@ public class AthleteModel {
     private Integer id;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "person_id")
-    private PersonModelModel person;
+    @JoinColumn(name = "id_club")
+    private SportClubModel idClub;
 
-    @Column(name = "rank")
-    private Integer rank;
+    @Column(name = "fio", length = 50)
+    private String fio;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "category_id")
-    private CategoryModel categoryModel;
+    @Column(name = "bday")
+    private LocalDate bday;
+
+    @Column(name = "rank", length = 50)
+    private String rank;
+
+    @Column(name = "category", length = 50)
+    private String category;
 
     public Integer getId() {
         return id;
@@ -28,28 +35,44 @@ public class AthleteModel {
         this.id = id;
     }
 
-    public PersonModelModel getPerson() {
-        return person;
+    public SportClubModel getIdClub() {
+        return idClub;
     }
 
-    public void setPerson(PersonModelModel person) {
-        this.person = person;
+    public void setIdClub(SportClubModel idClub) {
+        this.idClub = idClub;
     }
 
-    public Integer getRank() {
+    public String getFio() {
+        return fio;
+    }
+
+    public void setFio(String fio) {
+        this.fio = fio;
+    }
+
+    public LocalDate getBday() {
+        return bday;
+    }
+
+    public void setBday(LocalDate bday) {
+        this.bday = bday;
+    }
+
+    public String getRank() {
         return rank;
     }
 
-    public void setRank(Integer rank) {
+    public void setRank(String rank) {
         this.rank = rank;
     }
 
-    public CategoryModel getCategory() {
-        return categoryModel;
+    public String getCategory() {
+        return category;
     }
 
-    public void setCategory(CategoryModel categoryModel) {
-        this.categoryModel = categoryModel;
+    public void setCategory(String category) {
+        this.category = category;
     }
 
 }

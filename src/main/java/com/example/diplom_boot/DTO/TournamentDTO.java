@@ -8,7 +8,6 @@ public class TournamentDTO {
     private String tournamentLocation;
     private String tournamentDescription;
     private String tournamentRules;
-    private String prizeFound;
     List<Long> sportClubs_id;
     List<Long> athlete_id;
     List<Long> team_id;
@@ -51,14 +50,6 @@ public class TournamentDTO {
 
     public void setTournamentDescription(String tournamentDescription) {
         this.tournamentDescription = tournamentDescription;
-    }
-
-    public String getPrizeFound() {
-        return prizeFound;
-    }
-
-    public void setPrizeFound(String prizeFound) {
-        this.prizeFound = prizeFound;
     }
 
     public String getTournamentRules() {

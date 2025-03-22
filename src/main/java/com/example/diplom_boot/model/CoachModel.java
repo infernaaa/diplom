@@ -10,8 +10,11 @@ public class CoachModel {
     private Integer id;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "person_id")
-    private PersonModelModel person;
+    @JoinColumn(name = "athlete_id")
+    private AthleteModel athleteModel;
+
+    @Column(name = "fio", length = 50)
+    private String fio;
 
     public Integer getId() {
         return id;
@@ -21,12 +24,20 @@ public class CoachModel {
         this.id = id;
     }
 
-    public PersonModelModel getPerson() {
-        return person;
+    public AthleteModel getAthlete() {
+        return athleteModel;
     }
 
-    public void setPerson(PersonModelModel person) {
-        this.person = person;
+    public void setAthlete(AthleteModel athleteModel) {
+        this.athleteModel = athleteModel;
+    }
+
+    public String getFio() {
+        return fio;
+    }
+
+    public void setFio(String fio) {
+        this.fio = fio;
     }
 
 }

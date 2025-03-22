@@ -2,8 +2,6 @@ package com.example.diplom_boot.model;
 
 import jakarta.persistence.*;
 
-import java.time.LocalDate;
-
 @Entity
 @Table(name = "pool")
 public class PoolModel {
@@ -11,18 +9,12 @@ public class PoolModel {
     @Column(name = "pool_id", nullable = false)
     private Integer id;
 
-    @Column(name = "name", nullable = false)
+    @Column(name = "name", length = 50)
     private String name;
-
-    @Column(name = "start_date", nullable = false)
-    private LocalDate startDate;
-
-    @Column(name = "end_date", nullable = false)
-    private LocalDate endDate;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "tournament_id")
-    private TournamentModel tournament;
+    private TournamentModel tournamentModel;
 
     public Integer getId() {
         return id;
@@ -40,28 +32,12 @@ public class PoolModel {
         this.name = name;
     }
 
-    public LocalDate getStartDate() {
-        return startDate;
-    }
-
-    public void setStartDate(LocalDate startDate) {
-        this.startDate = startDate;
-    }
-
-    public LocalDate getEndDate() {
-        return endDate;
-    }
-
-    public void setEndDate(LocalDate endDate) {
-        this.endDate = endDate;
-    }
-
     public TournamentModel getTournament() {
-        return tournament;
+        return tournamentModel;
     }
 
-    public void setTournament(TournamentModel tournament) {
-        this.tournament = tournament;
+    public void setTournament(TournamentModel tournamentModel) {
+        this.tournamentModel = tournamentModel;
     }
 
 }

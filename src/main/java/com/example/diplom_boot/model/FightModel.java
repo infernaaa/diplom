@@ -17,17 +17,17 @@ public class FightModel {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "team1_id")
-    private TeamModel team1;
+    private TeamModel teamModel1;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "team2_id")
-    private TeamModel team2;
+    private TeamModel teamModel2;
 
-    @Column(name = "fight_date", nullable = false)
+    @Column(name = "fight_date")
     private LocalDate fightDate;
 
-    @Column(name = "fight_place", nullable = false)
-    private String fightPlace;
+    @Column(name = "fight_place")
+    private LocalDate fightPlace;
 
     public Integer getId() {
         return id;
@@ -46,19 +46,19 @@ public class FightModel {
     }
 
     public TeamModel getTeam1() {
-        return team1;
+        return teamModel1;
     }
 
-    public void setTeam1(TeamModel team1) {
-        this.team1 = team1;
+    public void setTeam1(TeamModel teamModel1) {
+        this.teamModel1 = teamModel1;
     }
 
     public TeamModel getTeam2() {
-        return team2;
+        return teamModel2;
     }
 
-    public void setTeam2(TeamModel team2) {
-        this.team2 = team2;
+    public void setTeam2(TeamModel teamModel2) {
+        this.teamModel2 = teamModel2;
     }
 
     public LocalDate getFightDate() {
@@ -69,11 +69,11 @@ public class FightModel {
         this.fightDate = fightDate;
     }
 
-    public String getFightPlace() {
+    public LocalDate getFightPlace() {
         return fightPlace;
     }
 
-    public void setFightPlace(String fightPlace) {
+    public void setFightPlace(LocalDate fightPlace) {
         this.fightPlace = fightPlace;
     }
 

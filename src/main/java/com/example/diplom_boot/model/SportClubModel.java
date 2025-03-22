@@ -1,39 +1,40 @@
 package com.example.diplom_boot.model;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "sport_club")
 public class SportClubModel {
-
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name ="sport_club_id")
-    private Long idSportClub;
+    @Column(name = "sport_club_id", nullable = false)
+    private Integer id;
 
-    @Column(name = "name")
+    @Column(name = "name", length = 50)
     private String name;
 
-    @Column(name = "address")
+    @Column(name = "address", length = 50)
     private String address;
 
-    @Column(name = "phone_club")
-    private String phone_club;
+    @Column(name = "phone_club", length = 15)
+    private String phoneClub;
 
-    public Long getIdSportClub() {
-        return idSportClub;
+    public Integer getId() {
+        return id;
     }
 
-    public void setIdSportClub(Long idSportClub) {
-        this.idSportClub = idSportClub;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
-    public String getPhone_club() {
-        return phone_club;
+    public String getName() {
+        return name;
     }
 
-    public void setPhone_club(String phone_club) {
-        this.phone_club = phone_club;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getAddress() {
@@ -44,11 +45,12 @@ public class SportClubModel {
         this.address = address;
     }
 
-    public String getName() {
-        return name;
+    public String getPhoneClub() {
+        return phoneClub;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setPhoneClub(String phoneClub) {
+        this.phoneClub = phoneClub;
     }
+
 }

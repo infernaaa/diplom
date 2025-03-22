@@ -17,7 +17,7 @@ public class TeamModel {
     @JoinColumn(name = "coach_id")
     private CoachModel coachModel;
 
-    @Column(name = "team_name", nullable = false)
+    @Column(name = "team_name", length = 50)
     private String teamName;
 
     public Integer getId() {
