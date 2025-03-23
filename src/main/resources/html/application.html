@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Application List</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 80%;
+            margin: 20px auto;
+        }
+
+        th, td {
+            border: 1px solid #000;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        .container {
+            width: 80%;
+            margin: 20px auto;
+            text-align: center;
+        }
+
+        h1 {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>Application List</h1>
+    <table>
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Tournament</th>
+            <th>SportClub</th>
+            <th>Team</th>
+            <th>Athlete</th>
+            <th>Status</th>
+            <th>Date</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="applicationsDTO : ${applicationsDTO}">
+            <td th:text="${applicationsDTO.id}"></td>
+            <td th:text="${applicationsDTO.tourId}"></td>
+            <td th:text="${applicationsDTO.sportClubId}"></td>
+            <td th:text="${applicationsDTO.teamId}"></td>
+            <td th:text="${applicationsDTO.athleteId}"></td>
+            <td th:text="${applicationsDTO.status}"></td>
+            <td th:text="${applicationsDTO.date}"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

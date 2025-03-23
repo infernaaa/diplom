@@ -12,7 +12,7 @@ import java.time.LocalDate;
 public class TournamentModel {
     @Id
     @Column(name = "tournament_id", nullable = false)
-    private Integer id;
+    private Long id;
 
     @Column(name = "name", length = 50)
     private String name;
@@ -32,11 +32,11 @@ public class TournamentModel {
     @Column(name = "rules", length = Integer.MAX_VALUE)
     private String rules;
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

@@ -9,7 +9,7 @@ import java.time.LocalDate;
 public class FightModel {
     @Id
     @Column(name = "fight_id", nullable = false)
-    private Integer id;
+    private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "pool_id")
@@ -29,11 +29,11 @@ public class FightModel {
     @Column(name = "fight_place")
     private LocalDate fightPlace;
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

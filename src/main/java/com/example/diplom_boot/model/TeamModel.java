@@ -7,7 +7,7 @@ import jakarta.persistence.*;
 public class TeamModel {
     @Id
     @Column(name = "team_id", nullable = false)
-    private Integer id;
+    private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "sport_club_id")
@@ -20,11 +20,11 @@ public class TeamModel {
     @Column(name = "team_name", length = 50)
     private String teamName;
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

@@ -1,7 +1,5 @@
 package com.example.diplom_boot.controller;
 
-import com.example.diplom_boot.DTO.TournamentDTO;
-import com.example.diplom_boot.repository.TournamentRepo;
 import com.example.diplom_boot.service.TournamentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
