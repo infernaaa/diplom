@@ -1,5 +1,9 @@
 package com.example.diplom_boot.DTO;
 
+import com.example.diplom_boot.model.AthleteModel;
+import com.example.diplom_boot.model.SportClubModel;
+import com.example.diplom_boot.model.TeamModel;
+
 import java.util.List;
 
 public class TournamentDTO {
@@ -8,16 +12,16 @@ public class TournamentDTO {
     private String tournamentLocation;
     private String tournamentDescription;
     private String tournamentRules;
-    List<Long> sportClubs_id;
-    List<Long> athlete_id;
-    List<Long> team_id;
+    List<SportClubModel> sportClubs;
+    List<AthleteModel> athlete;
+    List<TeamModel> teams;
 
-    public List<Long> getTeam_id() {
-        return team_id;
+    public List<TeamModel> getTeams() {
+        return teams;
     }
 
-    public void setTeam_id(List<Long> team_id) {
-        this.team_id = team_id;
+    public void setTeams(List<TeamModel> teams) {
+        this.teams = teams;
     }
 
     public String getTournamentName() {
@@ -60,19 +64,19 @@ public class TournamentDTO {
         this.tournamentRules = tournamentRules;
     }
 
-    public List<Long> getSportClubs_id() {
-        return sportClubs_id;
+    public List<SportClubModel> getSportClubs() {
+        return sportClubs;
     }
 
-    public void setSportClubs_id(List<Long> sportClubs_id) {
-        this.sportClubs_id = sportClubs_id;
+    public void setSportClubs(List<SportClubModel> sportClubs) {
+        this.sportClubs = sportClubs;
     }
 
-    public List<Long> getAthlete_id() {
-        return athlete_id;
+    public List<AthleteModel> getAthlete() {
+        return athlete;
     }
 
-    public void setAthlete_id(List<Long> athlete_id) {
-        this.athlete_id = athlete_id;
+    public void setAthlete(List<AthleteModel> athlete) {
+        this.athlete = athlete;
     }
 }

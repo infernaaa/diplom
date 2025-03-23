@@ -38,12 +38,9 @@ public class TournamentService {
         tournamentDTO.setTournamentLocation(tournamentModel.getLocation());
         tournamentDTO.setTournamentDescription(tournamentModel.getDescription());
         tournamentDTO.setTournamentRules(tournamentModel.getRules());
-        List<Long> sportClubs_id = applicationRepo.findBySportClubId(id);
-        List<Long> team_id =  applicationRepo.findByTeamId(id);;
-        List<Long> athlete_id = applicationRepo.findByAthlete(id);;
-        tournamentDTO.setSportClubs_id(sportClubs_id);
-        tournamentDTO.setTeam_id(team_id);
-        tournamentDTO.setAthlete_id(athlete_id);
+        tournamentDTO.setSportClubs(applicationRepo.findBySportClubId(id));
+        tournamentDTO.setTeams( applicationRepo.findByTeamId(id));
+        tournamentDTO.setAthlete(applicationRepo.findByAthlete(id));
         return tournamentDTO;
     }
 }

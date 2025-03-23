@@ -29,6 +29,9 @@ public class SportClubControl {
     @GetMapping("/{id}")
     public String sportClubId(@PathVariable Long id, Model model) {
         model.addAttribute("sportclub", sportClubService.findById(id));
+        model.addAttribute("athletes", sportClubService.findAthletesBySportClub(id)) ;
         return "sportclub";
     }
+
+
 }

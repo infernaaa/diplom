@@ -55,6 +55,26 @@
             <td th:text="${sportclub.phoneClub}"></td>
         </tr>
     </table>
+
+    <h2>Athletes in the Club</h2>
+    <table>
+        <thead>
+        <tr>
+            <th>Athlete ID</th>
+            <th>Name</th>
+            <th>Rank</th>
+            <th>Category</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="athlete : ${athletes}">
+            <td th:text="${athlete.fio}"></td>
+            <td th:text="${athlete.bday}"></td>
+            <td th:text="${athlete.rank}"></td>
+            <td th:text="${athlete.category}"></td>
+        </tr>
+        </tbody>
+    </table>
 </div>
 </body>
 </html>

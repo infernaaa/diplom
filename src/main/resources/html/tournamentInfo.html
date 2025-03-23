@@ -41,6 +41,20 @@
         ul li {
             margin: 5px 0;
         }
+
+        .nested-table {
+            width: 100%;
+            margin: 10px 0;
+        }
+
+        .nested-table th, .nested-table td {
+            border: 1px solid #ddd;
+            padding: 5px;
+        }
+
+        .nested-table th {
+            background-color: #eaeaea;
+        }
     </style>
 </head>
 <body>
@@ -67,31 +81,65 @@
             <th>Rules</th>
             <td th:text="${TournamentDTO.tournamentRules}"></td>
         </tr>
-        <tr>
-            <th>Sport Clubs</th>
-            <td>
-                <ul>
-                    <li th:each="clubId : ${TournamentDTO.sportClubs_id}" th:text="${clubId}"></li>
-                </ul>
-            </td>
-        </tr>
-        <tr>
-            <th>Athletes</th>
-            <td>
-                <ul>
-                    <li th:each="athleteId : ${TournamentDTO.athlete_id}" th:text="${athleteId}"></li>
-                </ul>
-            </td>
-        </tr>
-        <tr>
-            <th>Teams</th>
-            <td>
-                <ul>
-                    <li th:each="teamId : ${TournamentDTO.team_id}" th:text="${teamId}"></li>
-                </ul>
-            </td>
-        </tr>
     </table>
+
+    <h2>Sport Clubs</h2>
+    <div th:each="club : ${TournamentDTO.sportClubs}">
+        <table class="nested-table">
+            <tr>
+                <th>Club ID</th>
+                <td th:text="${club.id}"></td>
+            </tr>
+            <tr>
+                <th>Club Name</th>
+                <td th:text="${club.name}"></td>
+            </tr>
+            <tr>
+                <th>Club Location</th>
+                <td th:text="${club.address}"></td>
+            </tr>
+            <tr>
+                <th>Club Location</th>
+                <td th:text="${club.phoneClub}"></td>
+            </tr>
+        </table>
+
+        <h3>Teams</h3>
+        <div th:each="team : ${TournamentDTO.teams}">
+            <table class="nested-table">
+                <tr>
+                    <th>Team Name</th>
+                    <td th:text="${team.teamName}"></td>
+                </tr>
+            </table>
+
+            <h4>Athletes</h4>
+            <div th:each="athlete : ${TournamentDTO.athlete}">
+                <table class="nested-table">
+                    <tr>
+                        <th>Athlete ID</th>
+                        <td th:text="${athlete.id}"></td>
+                    </tr>
+                    <tr>
+                        <th>Athlete Name</th>
+                        <td th:text="${athlete.fio}"></td>
+                    </tr>
+                    <tr>
+                        <th>Athlete Bday</th>
+                        <td th:text="${athlete.bday}"></td>
+                    </tr>
+                    <tr>
+                        <th>Athlete rank</th>
+                        <td th:text="${athlete.rank}"></td>
+                    </tr>
+                    <tr>
+                        <th>Athlete category</th>
+                        <td th:text="${athlete.category}"></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
 </div>
 </body>
 </html>
