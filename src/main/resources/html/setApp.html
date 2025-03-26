@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Athlete Selection</title>
+</head>
+<body>
+<form method="post">
+    <select name="selectedAthleteId" th:value="${selectedAthleteId}">
+        <option value="">-- Выберите атлета --</option>
+        <option th:each="athlete : ${athleteList}"
+                th:value="${athlete.id}"
+                th:text="${athlete.fio}">
+        </option>
+    </select>
+    <button type="submit">Отправить</button>
+</form>
+</body>
+</html>

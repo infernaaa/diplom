@@ -1,5 +1,6 @@
 package com.example.diplom_boot.controller;
 
+
 import com.example.diplom_boot.service.ApplicatonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -22,4 +23,5 @@ public class ApplicationControl {
         model.addAttribute("applicationsDTO", applicatonService.getAllApplications());
         return "application";
     }
+
 }
