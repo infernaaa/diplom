@@ -9,6 +9,7 @@ import java.time.LocalDate;
 public class ApplicationModel {
     @Id
     @Column(name = "application_id", nullable = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)

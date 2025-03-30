@@ -14,4 +14,5 @@ public interface AthleteRepo extends JpaRepository<AthleteModel, Long> {
             "from AthleteModel at " +
             "where at.idClub.id = :idClub")
     List<AthleteModel> findAthletesBySportClub(@Param("idClub") Long idClub);
+
 }

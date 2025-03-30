@@ -1,17 +1,23 @@
 package com.example.diplom_boot.controller;
 
 
+import com.example.diplom_boot.DTO.ApplicationDTO;
 import com.example.diplom_boot.DTO.AthleteList;
+import com.example.diplom_boot.model.ApplicationModel;
 import com.example.diplom_boot.model.AthleteModel;
+import com.example.diplom_boot.model.TournamentModel;
+import com.example.diplom_boot.repository.ApplicationRepo;
 import com.example.diplom_boot.repository.AthleteRepo;
+import com.example.diplom_boot.repository.TeamAthleteRepo;
+import com.example.diplom_boot.repository.TournamentRepo;
 import com.example.diplom_boot.service.SportClubService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,11 +27,17 @@ public class SportClubControl {
 
     private final SportClubService sportClubService;
     private final AthleteRepo athleteRepo;
+    private final TournamentRepo tournamentRepo;
+    private final ApplicationRepo applicationRepo;
+    private final TeamAthleteRepo teamAthleteRepo;
 
     @Autowired
-    public SportClubControl(SportClubService sportClubService, AthleteRepo athleteRepo) {
+    public SportClubControl(SportClubService sportClubService, AthleteRepo athleteRepo, TournamentRepo tournamentRepo, ApplicationRepo applicationRepo, TeamAthleteRepo teamAthleteRepo) {
         this.sportClubService = sportClubService;
         this.athleteRepo = athleteRepo;
+        this.tournamentRepo = tournamentRepo;
+        this.applicationRepo = applicationRepo;
+        this.teamAthleteRepo = teamAthleteRepo;
     }
 
     @GetMapping
@@ -43,8 +55,28 @@ public class SportClubControl {
 
     @GetMapping("/{id}/newApp")
     public String newApp(@PathVariable Long id, Model model) {
-        List<AthleteModel> athleteList= new ArrayList<>(athleteRepo.findAthletesBySportClub(id));
+        List<AthleteModel> athleteList = new ArrayList<>(athleteRepo.findAthletesBySportClub(id));
+        List<TournamentModel> tourList = new ArrayList<>(tournamentRepo.findAll());
         model.addAttribute("athleteList", athleteList);
+        model.addAttribute("tourList", tourList);
+        model.addAttribute("applicationForm", new ApplicationDTO());
+        model.addAttribute("id", id);
         return "setApp";
+    }
+
+    @PostMapping("/{id}/newAppCreate")
+    public String createNewApp(@PathVariable("id") String id,
+                               @ModelAttribute("applicationForm") ApplicationDTO form) {
+        Long newId = Long.parseLong(id);
+        ApplicationModel applicationModel = new ApplicationModel();
+        applicationModel.setAthlete(athleteRepo.findById(form.getAthleteId()).orElseThrow());
+        applicationModel.setTeam(teamAthleteRepo.findTeamByAthleteId(form.getAthleteId()));
+        applicationModel.setSportClub(sportClubService.findById(newId));
+        applicationModel.setTournament(tournamentRepo.findById(form.getTourId()).orElseThrow());
+        applicationModel.setStatus("PROCESSING");
+        applicationModel.setApplicationDate(LocalDate.now());
+
+        applicationRepo.save(applicationModel);
+        return "redirect:/sportclubs";
     }
 }
