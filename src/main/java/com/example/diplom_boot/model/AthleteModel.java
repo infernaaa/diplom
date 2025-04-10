@@ -1,5 +1,6 @@
 package com.example.diplom_boot.model;
 
+import com.example.diplom_boot.controller.SportClubControl;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
@@ -9,6 +10,7 @@ import java.time.LocalDate;
 public class AthleteModel {
     @Id
     @Column(name = "athlete_id", nullable = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -26,6 +28,18 @@ public class AthleteModel {
 
     @Column(name = "category", length = 50)
     private String category;
+
+    public AthleteModel() {
+
+    }
+
+    public AthleteModel(String fio, String bday, String rank, String category, SportClubModel club) {
+        this.fio = fio;
+        this.bday = LocalDate.parse(bday);
+        this.rank = rank;
+        this.category = category;
+        this.idClub = club;
+    }
 
     public Long getId() {
         return id;

@@ -1,14 +1,10 @@
 package com.example.diplom_boot.service;
 
 import com.example.diplom_boot.DTO.ApplicationDTO;
-import com.example.diplom_boot.model.ApplicationModel;
 import com.example.diplom_boot.repository.ApplicationRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
