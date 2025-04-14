@@ -9,6 +9,7 @@ import com.example.diplom_boot.repository.ApplicationRepo;
 import com.example.diplom_boot.repository.AthleteRepo;
 import com.example.diplom_boot.repository.TeamAthleteRepo;
 import com.example.diplom_boot.repository.TournamentRepo;
+import com.example.diplom_boot.service.AthleteService;
 import com.example.diplom_boot.service.SportClubService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -28,14 +29,16 @@ public class SportClubControl {
     private final TournamentRepo tournamentRepo;
     private final ApplicationRepo applicationRepo;
     private final TeamAthleteRepo teamAthleteRepo;
+    private final AthleteService athleteService;
 
     @Autowired
-    public SportClubControl(SportClubService sportClubService, AthleteRepo athleteRepo, TournamentRepo tournamentRepo, ApplicationRepo applicationRepo, TeamAthleteRepo teamAthleteRepo) {
+    public SportClubControl(SportClubService sportClubService, AthleteRepo athleteRepo, TournamentRepo tournamentRepo, ApplicationRepo applicationRepo, TeamAthleteRepo teamAthleteRepo, AthleteService athleteService) {
         this.sportClubService = sportClubService;
         this.athleteRepo = athleteRepo;
         this.tournamentRepo = tournamentRepo;
         this.applicationRepo = applicationRepo;
         this.teamAthleteRepo = teamAthleteRepo;
+        this.athleteService = athleteService;
     }
 
     @GetMapping
@@ -76,5 +79,26 @@ public class SportClubControl {
 
         applicationRepo.save(applicationModel);
         return "redirect:/sportclubs";
+    }
+
+    @PostMapping("/{clubId}/athletes/new")
+    public String addAthlete(
+            @PathVariable Long clubId,
+            @RequestParam String name,
+            @RequestParam String bday,
+            @RequestParam String rank,
+            @RequestParam String category) {
+
+        AthleteModel athlete = new AthleteModel(name, bday, rank, category, sportClubService.findById(clubId));
+        athleteService.addAthleteToClub(athlete);
+        return "redirect:/sportclubs/" + clubId;
+    }
+
+    @PostMapping("/{clubId}/athletes/{id}/delete")
+    public String deleteAthlete(
+            @PathVariable Long clubId,
+            @PathVariable Long id) {
+        athleteService.deleteAthlete(id);
+        return "redirect:/sportclubs/" + clubId;
     }
 }

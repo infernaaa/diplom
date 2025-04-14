@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>SportClubs List</title>
+    <title>Athlete List</title>
     <meta charset="UTF-8">
     <style>
         table {
@@ -52,24 +52,28 @@
 
 <div th:replace="~{topButtons :: menu}"></div>
 
-<h1>Список клубов</h1>
+<h1>Список спортсменов</h1>
 
 <table>
     <thead>
     <tr>
-        <th>Наименование</th>
-        <th>Адрес</th>
-        <th>Контактный номер телефона</th>
-        <th>Подробно</th>
+        <th>ФИО</th>
+        <th>Дата рождениия</th>
+        <th>Ранг</th>
+        <th>Категория</th>
+        <th>Клуб</th>
+        <th>Действие</th>
     </tr>
     </thead>
     <tbody>
-    <tr th:each="sportclub : ${SportClubs}">
-        <td th:text="${sportclub.name}"></td>
-        <td th:text="${sportclub.address}"></td>
-        <td th:text="${sportclub.phoneClub}"></td>
+    <tr th:each="athlete : ${athletes}">
+        <td th:text="${athlete.fio}"></td>
+        <td th:text="${athlete.bday}"></td>
+        <td th:text="${athlete.rank}"></td>
+        <td th:text="${athlete.category}"></td>
+        <td th:text="${athlete.idClub.getName()}"></td>
         <td>
-            <a th:href="@{/sportclubs/{id}(id=${sportclub.id})}" class="button">Подробно</a>
+            <a th:href="@{/athletes/{id}(id=${athlete.id})}" class="button">Подробно</a>
         </td>
     </tr>
     </tbody>

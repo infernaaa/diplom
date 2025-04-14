@@ -5,11 +5,12 @@
     <title>Athlete Selection</title>
 </head>
 <body>
+<div th:replace="~{topButtons :: menu}"></div>
+
 <form th:action="@{/sportclubs/{id}/newAppCreate(id=${id})}"
       th:object="${applicationForm}"
       method="post">
 
-    <!-- Выбор атлета (используем th:field для привязки к DTO) -->
     <select th:field="*{athleteId}">
         <option value="">-- Выберите атлета --</option>
         <option th:each="athlete : ${athleteList}"
@@ -18,7 +19,6 @@
         </option>
     </select>
 
-    <!-- Выбор турнира (используем th:field для привязки к DTO) -->
     <select th:field="*{tourId}">
         <option value="">-- Выберите турнир --</option>
         <option th:each="tour : ${tourList}"

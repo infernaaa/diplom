@@ -43,12 +43,9 @@
     </style>
 </head>
 <body>
-<div class="button-container">
-    <button onclick="window.location.href='/sportclubs'">Спортивные клубы</button>
-    <button onclick="window.location.href='/app'">Заявки</button>
-    <button onclick="window.location.href='/tournaments'">Соревнования</button>
-    <button onclick="window.location.href='/app'">Спортсмены</button>
-</div>
+
+<div th:replace="~{topButtons :: menu}"></div>
+
 <div class="add-athlete-form">
     <h3>Добавить спортсмена</h3>
     <form th:action="@{/sportclubs/{clubId}/athletes/new(clubId=${sportclub.id})}" method="post">

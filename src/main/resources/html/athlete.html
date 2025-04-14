@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>SportClub Details</title>
+    <meta charset="UTF-8">
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 50%;
+        }
+
+        th, td {
+            border: 1px solid #000;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        .container {
+            width: 50%;
+            text-align: left;
+        }
+
+        h1 {
+            text-align: left;
+        }
+        .button-container {
+            margin-bottom: 20px;
+        }
+
+        .button-container button {
+            margin-right: 10px;
+            padding: 8px 16px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+<div th:replace="~{topButtons :: menu}"></div>
+
+<div class="container">
+    <h1>Информация о спортсмене</h1>
+    <table>
+        <tr>
+            <th>ФИО</th>
+            <td th:text="${athlete.fio}"></td>
+        </tr>
+        <tr>
+            <th>Дата рождения</th>
+            <td th:text="${athlete.bday}"></td>
+        </tr>
+        <tr>
+            <th>Ранг</th>
+            <td th:text="${athlete.rank}"></td>
+        </tr>
+        <tr>
+            <th>Категория</th>
+            <td th:text="${athlete.category}"></td>
+        </tr>
+    </table>
+</div>
+</body>
+</html>
