@@ -37,26 +37,24 @@
 <body>
 <div th:replace="~{topButtons :: menu}"></div>
 <div class="container">
-    <h1>Application List</h1>
+    <h1>Список заявок</h1>
     <table>
         <thead>
         <tr>
-            <th>ID</th>
-            <th>Tournament</th>
-            <th>SportClub</th>
-            <th>Team</th>
-            <th>Athlete</th>
-            <th>Status</th>
-            <th>Date</th>
+            <th>Турнир</th>
+            <th>Спортивный клуб заявителя</th>
+            <th>Команда</th>
+            <th>Атлет</th>
+            <th>Статус заявки</th>
+            <th>Дата подачи</th>
         </tr>
         </thead>
         <tbody>
         <tr th:each="applicationsDTO : ${applicationsDTO}">
-            <td th:text="${applicationsDTO.id}"></td>
-            <td th:text="${applicationsDTO.tourId}"></td>
-            <td th:text="${applicationsDTO.sportClubId}"></td>
-            <td th:text="${applicationsDTO.teamId}"></td>
-            <td th:text="${applicationsDTO.athleteId}"></td>
+            <td th:text="${applicationsDTO.tour.getName()}"></td>
+            <td th:text="${applicationsDTO.sportClub.getName()}"></td>
+            <td th:text="${applicationsDTO.team.getTeamName()}"></td>
+            <td th:text="${applicationsDTO.athlete.getFio()}"></td>
             <td th:text="${applicationsDTO.status}"></td>
             <td th:text="${applicationsDTO.date}"></td>
         </tr>

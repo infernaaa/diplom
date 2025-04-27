@@ -23,10 +23,10 @@ public class ApplicatonService {
                 .map(application -> {
                     ApplicationDTO dto = new ApplicationDTO();
                     dto.setId(application.getId());
-                    dto.setTourId(application.getTournament().getId());
-                    dto.setSportClubId(application.getSportClub().getId());
-                    dto.setTeamId(application.getTeam().getId());
-                    dto.setAthleteId(application.getAthlete().getId());
+                    dto.setTour(application.getTournament());
+                    dto.setSportClub(application.getSportClub());
+                    dto.setTeam(application.getTeam());
+                    dto.setAthlete(application.getAthlete());
                     dto.setStatus(application.getStatus());
                     dto.setDate(application.getApplicationDate());
                     return dto;

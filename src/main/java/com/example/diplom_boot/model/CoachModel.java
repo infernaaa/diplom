@@ -9,10 +9,6 @@ public class CoachModel {
     @Column(name = "coach_id", nullable = false)
     private Long id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "athlete_id")
-    private AthleteModel athleteModel;
-
     @Column(name = "fio", length = 50)
     private String fio;
 
@@ -22,14 +18,6 @@ public class CoachModel {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public AthleteModel getAthlete() {
-        return athleteModel;
-    }
-
-    public void setAthlete(AthleteModel athleteModel) {
-        this.athleteModel = athleteModel;
     }
 
     public String getFio() {

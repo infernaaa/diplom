@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <meta charset="UTF-8">
 <head>
-    <title>Tournament Details</title>
+    <title>Детали турнира</title>
     <style>
         table {
             border-collapse: collapse;
@@ -64,58 +64,50 @@
     <h1>Tournament Details</h1>
     <table>
         <tr>
-            <th>ID</th>
-            <td th:text="${TournamentDTO.tournamentId}"></td>
-        </tr>
-        <tr>
-            <th>Name</th>
+            <th>Наименование турнира</th>
             <td th:text="${TournamentDTO.tournamentName}"></td>
         </tr>
         <tr>
-            <th>Location</th>
+            <th>Место проведения</th>
             <td th:text="${TournamentDTO.tournamentLocation}"></td>
         </tr>
         <tr>
-            <th>Description</th>
+            <th>Описание</th>
             <td th:text="${TournamentDTO.tournamentDescription}"></td>
         </tr>
         <tr>
-            <th>Rules</th>
+            <th>Правила</th>
             <td th:text="${TournamentDTO.tournamentRules}"></td>
         </tr>
     </table>
 
-    <h2>Sport Clubs</h2>
+    <h2>Спортивные клубы</h2>
     <div th:each="club : ${TournamentDTO.sportClubs}">
         <table class="nested-table">
             <tr>
-                <th>Club ID</th>
-                <td th:text="${club.id}"></td>
-            </tr>
-            <tr>
-                <th>Club Name</th>
+                <th>Наименование</th>
                 <td th:text="${club.name}"></td>
             </tr>
             <tr>
-                <th>Club Location</th>
+                <th>Адрес</th>
                 <td th:text="${club.address}"></td>
             </tr>
             <tr>
-                <th>Club Location</th>
+                <th>Контактный телефон</th>
                 <td th:text="${club.phoneClub}"></td>
             </tr>
         </table>
 
-        <h3>Teams</h3>
+        <h3>Команды</h3>
         <div th:each="team : ${TournamentDTO.teams}">
             <table class="nested-table">
                 <tr>
-                    <th>Team Name</th>
+                    <th>Название команды</th>
                     <td th:text="${team.teamName}"></td>
                 </tr>
             </table>
 
-            <h4>Athletes</h4>
+            <h4>Спортсмены</h4>
             <div th:each="athlete : ${TournamentDTO.athlete}">
                 <table class="nested-table">
                     <tr>

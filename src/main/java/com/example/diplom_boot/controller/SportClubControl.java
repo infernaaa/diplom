@@ -65,15 +65,21 @@ public class SportClubControl {
         return "setApp";
     }
 
+    /** Создание новой заявки от клуба
+     *
+     * @param id клуба
+     * @param form DTO для заявки
+     * @return переадресация на исходную, обращение в бд с записью заявки
+     */
     @PostMapping("/{id}/newAppCreate")
     public String createNewApp(@PathVariable("id") String id,
                                @ModelAttribute("applicationForm") ApplicationDTO form) {
         Long newId = Long.parseLong(id);
         ApplicationModel applicationModel = new ApplicationModel();
-        applicationModel.setAthlete(athleteRepo.findById(form.getAthleteId()).orElseThrow());
-        applicationModel.setTeam(teamAthleteRepo.findTeamByAthleteId(form.getAthleteId()));
+        applicationModel.setAthlete(athleteRepo.findById(form.getAthlete().getId()).orElseThrow());
+        applicationModel.setTeam(teamAthleteRepo.findTeamByAthleteId(form.getAthlete().getId()));
         applicationModel.setSportClub(sportClubService.findById(newId));
-        applicationModel.setTournament(tournamentRepo.findById(form.getTourId()).orElseThrow());
+        applicationModel.setTournament(tournamentRepo.findById(form.getTour().getId()).orElseThrow());
         applicationModel.setStatus("PROCESSING");
         applicationModel.setApplicationDate(LocalDate.now());
 
@@ -81,6 +87,15 @@ public class SportClubControl {
         return "redirect:/sportclubs";
     }
 
+    /** Создание нового спортсмена в клубе
+     *
+     * @param clubId клуб
+     * @param name имя спортика
+     * @param bday др спортика
+     * @param rank ранг спортика
+     * @param category категория (возраста) спортика
+     * @return переадресация на форму раньше, добавление спортика в клуб (БД)
+     */
     @PostMapping("/{clubId}/athletes/new")
     public String addAthlete(
             @PathVariable Long clubId,
@@ -94,6 +109,12 @@ public class SportClubControl {
         return "redirect:/sportclubs/" + clubId;
     }
 
+    /** Удаление спортика из клуба и вообще
+     *
+     * @param clubId id клуба
+     * @param id id спортика
+     * @return переадресация на страницу, удаление из бд
+     */
     @PostMapping("/{clubId}/athletes/{id}/delete")
     public String deleteAthlete(
             @PathVariable Long clubId,
