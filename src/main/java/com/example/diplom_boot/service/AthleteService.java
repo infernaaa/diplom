@@ -19,6 +19,7 @@ public class AthleteService {
     public List<AthleteModel> findAll() {
         return athleteRepo.findAll();
     }
+
     public void addAthleteToClub(AthleteModel athlete) {
         athleteRepo.save(athlete);
     }

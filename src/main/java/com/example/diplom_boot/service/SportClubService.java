@@ -35,4 +35,7 @@ public class SportClubService {
 
     }
 
+    public void deleteById(Long id) {
+        sportClubRepo.deleteById(id);
+    }
 }

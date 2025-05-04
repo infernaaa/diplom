@@ -59,7 +59,7 @@ public class SecurityConfig {
         // Пример пользователя (в реальном приложении пользователи будут загружаться из БД)
         UserDetails user = User.builder()
                 .username("user")
-                .password(passwordEncoder().encode("userPassword")) // замените на реальный пароль
+                .password(passwordEncoder().encode("")) // замените на реальный пароль
                 .roles("USER")
                 .build();
 

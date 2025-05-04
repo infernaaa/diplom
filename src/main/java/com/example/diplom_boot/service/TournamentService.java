@@ -21,16 +21,16 @@ public class TournamentService {
         this.applicationRepo = applicationRepo;
     }
 
-    public List<TournamentModel> findAll(){
+    public List<TournamentModel> findAll() {
         return tournamentRepo.findAll();
     }
 
-    public TournamentModel findById(Long id){
+    public TournamentModel findById(Long id) {
         return tournamentRepo.findById(id)
-                .orElseThrow(() ->  new RuntimeException("Not found"));
+                .orElseThrow(() -> new RuntimeException("Not found"));
     }
 
-    public TournamentDTO findInfo(Long id){
+    public TournamentDTO findInfo(Long id) {
         TournamentDTO tournamentDTO = new TournamentDTO();
         TournamentModel tournamentModel = findById(id);
         tournamentDTO.setTournamentId(id);
@@ -39,7 +39,7 @@ public class TournamentService {
         tournamentDTO.setTournamentDescription(tournamentModel.getDescription());
         tournamentDTO.setTournamentRules(tournamentModel.getRules());
         tournamentDTO.setSportClubs(applicationRepo.findBySportClubId(id));
-        tournamentDTO.setTeams( applicationRepo.findByTeamId(id));
+        tournamentDTO.setTeams(applicationRepo.findByTeamId(id));
         tournamentDTO.setAthlete(applicationRepo.findByAthlete(id));
         return tournamentDTO;
     }

@@ -11,6 +11,7 @@ import com.example.diplom_boot.repository.TeamAthleteRepo;
 import com.example.diplom_boot.repository.TournamentRepo;
 import com.example.diplom_boot.service.AthleteService;
 import com.example.diplom_boot.service.SportClubService;
+import com.example.diplom_boot.service.TeamService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -30,15 +31,19 @@ public class SportClubControl {
     private final ApplicationRepo applicationRepo;
     private final TeamAthleteRepo teamAthleteRepo;
     private final AthleteService athleteService;
+    private final TeamService teamService;
+    private final TeamController teamController;
 
     @Autowired
-    public SportClubControl(SportClubService sportClubService, AthleteRepo athleteRepo, TournamentRepo tournamentRepo, ApplicationRepo applicationRepo, TeamAthleteRepo teamAthleteRepo, AthleteService athleteService) {
+    public SportClubControl(SportClubService sportClubService, AthleteRepo athleteRepo, TournamentRepo tournamentRepo, ApplicationRepo applicationRepo, TeamAthleteRepo teamAthleteRepo, AthleteService athleteService, TeamService teamService, TeamController teamController) {
         this.sportClubService = sportClubService;
         this.athleteRepo = athleteRepo;
         this.tournamentRepo = tournamentRepo;
         this.applicationRepo = applicationRepo;
         this.teamAthleteRepo = teamAthleteRepo;
         this.athleteService = athleteService;
+        this.teamService = teamService;
+        this.teamController = teamController;
     }
 
     @GetMapping
@@ -47,6 +52,13 @@ public class SportClubControl {
         return "sportclubs_list";
     }
 
+    /**
+     * Просмотр детальной информации о клубе
+     *
+     * @param id
+     * @param model
+     * @return
+     */
     @GetMapping("/{id}")
     public String sportClubId(@PathVariable Long id, Model model) {
         model.addAttribute("sportclub", sportClubService.findById(id));
@@ -54,6 +66,57 @@ public class SportClubControl {
         return "sportclub";
     }
 
+    @PostMapping("/{id}/delete")
+    public String deleteSportClub(@PathVariable Long id, Model model) {
+        sportClubService.deleteById(id);
+        return "redirect:/sportclubs" + id;
+    }
+
+    /**
+     * end point на просмотр команд клуба
+     *
+     * @param id
+     * @param model
+     * @return
+     */
+    @GetMapping("/{id}/teams")
+    public String teamsSportClub(@PathVariable Long id, Model model) {
+        model.addAttribute("Teams", teamService.findTeamBySportlubId(id));
+        return "teamsSportClub";
+    }
+
+    @GetMapping("/{id}/teams/{teamId}")
+    public String teamsSportClubDetail(@PathVariable Long id, @PathVariable Long teamId, Model model) {
+        model.addAttribute("team", teamService.findTeamById(teamId));
+        model.addAttribute("teamMembers", teamService.findMembersByTeamId(teamId));
+        return "teamsSportClubDetail";
+    }
+
+    /**
+     * Запрос на создание новой команды от клуба
+     *
+     * @param id
+     * @param coachId
+     * @param name
+     * @param model
+     * @return
+     */
+    @PostMapping("/{id}/createTeam")
+    public String createTeam(@PathVariable Long id,
+                             @RequestParam String coachId,
+                             @RequestParam String name,
+                             Model model) {
+        teamService.save(id, Long.parseLong(coachId), name);
+        return "redirect:/sportclubs/" + id;
+    }
+
+    /**
+     * end point на создание новой заявки от клуба
+     *
+     * @param id
+     * @param model
+     * @return
+     */
     @GetMapping("/{id}/newApp")
     public String newApp(@PathVariable Long id, Model model) {
         List<AthleteModel> athleteList = new ArrayList<>(athleteRepo.findAthletesBySportClub(id));
@@ -65,9 +128,10 @@ public class SportClubControl {
         return "setApp";
     }
 
-    /** Создание новой заявки от клуба
+    /**
+     * Создание новой заявки от клуба
      *
-     * @param id клуба
+     * @param id   клуба
      * @param form DTO для заявки
      * @return переадресация на исходную, обращение в бд с записью заявки
      */
@@ -87,12 +151,13 @@ public class SportClubControl {
         return "redirect:/sportclubs";
     }
 
-    /** Создание нового спортсмена в клубе
+    /**
+     * Создание нового спортсмена в клубе
      *
-     * @param clubId клуб
-     * @param name имя спортика
-     * @param bday др спортика
-     * @param rank ранг спортика
+     * @param clubId   клуб
+     * @param name     имя спортика
+     * @param bday     др спортика
+     * @param rank     ранг спортика
      * @param category категория (возраста) спортика
      * @return переадресация на форму раньше, добавление спортика в клуб (БД)
      */
@@ -109,10 +174,11 @@ public class SportClubControl {
         return "redirect:/sportclubs/" + clubId;
     }
 
-    /** Удаление спортика из клуба и вообще
+    /**
+     * Удаление спортика из клуба и вообще
      *
      * @param clubId id клуба
-     * @param id id спортика
+     * @param id     id спортика
      * @return переадресация на страницу, удаление из бд
      */
     @PostMapping("/{clubId}/athletes/{id}/delete")

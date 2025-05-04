@@ -23,14 +23,14 @@ public class AthleteControl {
     }
 
     @GetMapping
-    public String athletes (Model model){
-        model.addAttribute("athletes",athleteService.findAll());
+    public String athletes(Model model) {
+        model.addAttribute("athletes", athleteService.findAll());
         return "athlete_list";
     }
 
     @GetMapping("/{id}")
-    public String athlete (@PathVariable Long id,Model model){
-        model.addAttribute("athlete",athleteService.findById(id));
+    public String athlete(@PathVariable Long id, Model model) {
+        model.addAttribute("athlete", athleteService.findById(id));
         return "athlete";
     }
 

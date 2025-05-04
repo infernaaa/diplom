@@ -28,7 +28,7 @@ public class TournamentControl {
 
     @GetMapping("/{id}")
     public String tournament(@PathVariable Long id, Model model) {
-        model.addAttribute("TournamentDTO",tournamentService.findInfo(id));
+        model.addAttribute("TournamentDTO", tournamentService.findInfo(id));
         return "tournamentInfo.html";
     }
 }

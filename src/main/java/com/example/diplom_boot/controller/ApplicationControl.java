@@ -3,7 +3,6 @@ package com.example.diplom_boot.controller;
 
 import com.example.diplom_boot.service.ApplicatonService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,10 +18,10 @@ public class ApplicationControl {
     public ApplicationControl(ApplicatonService applicatonService) {
         this.applicatonService = applicatonService;
     }
+
     @GetMapping
     public String getAllApplications(Model model) {
         model.addAttribute("applicationsDTO", applicatonService.getAllApplications());
         return "application";
     }
-
 }

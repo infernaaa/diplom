@@ -1,6 +1,8 @@
 package com.example.diplom_boot.model;
 
+import com.example.diplom_boot.repository.CoachRepo;
 import jakarta.persistence.*;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Entity
 @Table(name = "team")
@@ -19,6 +21,16 @@ public class TeamModel {
 
     @Column(name = "team_name", length = 50)
     private String teamName;
+
+    public TeamModel(SportClubModel sportClubModel, CoachModel coachModel, String teamName) {
+        this.sportClubModel = sportClubModel;
+        this.coachModel = coachModel;
+        this.teamName = teamName;
+    }
+
+    public TeamModel() {
+
+    }
 
     public Long getId() {
         return id;
